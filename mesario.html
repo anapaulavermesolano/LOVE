@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our One-Month Anniversary 💕</title>
+  <link rel="stylesheet" href="mesario.css" />
+</head>
+<body>
+
+<!-- ═══ BACKGROUND LAYERS ═══ -->
+<div class="stars" id="stars"></div>
+<div class="petals-container" id="petals"></div>
+<div class="hearts-bg" id="heartsFloat"></div>
+
+<!-- ═══════════════════════════════════════════
+     PASSWORD SCREEN
+═══════════════════════════════════════════ -->
+<div id="password-screen">
+  <div class="password-card">
+    <span class="lock-heart">🔐</span>
+    <h1>A place just for us</h1>
+    <p class="subtitle">enter the date of our one-month anniversary</p>
+
+    <div class="heart-input-wrapper">
+      <svg class="heart-outline" viewBox="0 0 24 24" fill="none" stroke="#e8547a" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      <input
+        type="text"
+        id="pwdInput"
+        placeholder="DD/MM/AA"
+        maxlength="8"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+
+    <p class="error-msg hidden" id="errorMsg">❌ Wrong password, my love — try again 💕</p>
+
+    <button class="btn-unlock" onclick="checkPassword()">💖 Open our memory</button>
+
+    <div class="hint">
+      <div class="hint-dot"></div><div class="hint-dot"></div>
+      <span class="hint-slash">/</span>
+      <div class="hint-dot"></div><div class="hint-dot"></div>
+      <span class="hint-slash">/</span>
+      <div class="hint-dot"></div><div class="hint-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<div id="main-content">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <span class="crown">👑</span>
+    <h1>Happy 15th month Aniversary 😘</h1>
+    <div class="date-badge">💕 June 9th · One month of love 💕</div>
+  </header>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span>✦</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- FLAGS -->
+  <div class="flags-section">
+    <div class="flag-item">
+      <div class="flag-pole"></div>
+      <div class="flag peru">
+        <div class="flag-stripe s1"></div>
+        <div class="flag-stripe s2"></div>
+        <div class="flag-stripe s3"></div>
+      </div>
+      <span class="flag-label">Peru 🇵🇪</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-pole"></div>
+      <div class="flag netherlands">
+        <div class="flag-stripe s1"></div>
+        <div class="flag-stripe s2"></div>
+        <div class="flag-stripe s3"></div>
+      </div>
+      <span class="flag-label">Netherlands 🇳🇱</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-pole"></div>
+      <div class="flag italy">
+        <div class="flag-stripe s1"></div>
+        <div class="flag-stripe s2"></div>
+        <div class="flag-stripe s3"></div>
+      </div>
+      <span class="flag-label">Italia 🇮🇹</span>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span>🌹</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- CAROUSEL -->
+  <section class="carousel-section">
+    <h2 class="carousel-title">✨ Our trip to Italy ✨</h2>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack"></div>
+      <button class="carousel-btn prev" onclick="prevSlide()">❮</button>
+      <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+    </div>
+
+    <div class="carousel-dots" id="dotsContainer"></div>
+
+    <div class="upload-section">
+      <label class="btn-upload" for="fileInput">
+        📸 Upload photos from Italy
+      </label>
+      <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFileUpload(event)" />
+    </div>
+    <p class="upload-hint">Upload your travel photos to fill the carousel with our memories 🕌</p>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider" style="margin-top:44px;">
+    <div class="divider-line"></div>
+    <span>💌</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ROMANTIC MESSAGE -->
+  <section class="message-section">
+    <div class="message-card">
+      <div class="message-hearts">
+        <span>🌸</span><span>💕</span><span>🌸</span>
+      </div>
+      <p class="message-title">Happy Anniversary, Marc 💛</p>
+      <p class="message-text">
+        We know that the distance makes things harder for us, but even with difficulties,
+        we always try to understand each other, even when language makes it harder to say
+        what we truly feel.<br /><br />
+        It is not easy, but we keep fighting to stay together, to not grow apart, and to
+        understand each other in our own way.<br /><br />
+        I just want you to be happy, and I will always be there for you, because you are
+        someone I love so much and who means so much to me.<br /><br />
+        Let's keep working and trying together, so this flame never goes out, and so we
+        can keep writing our love story. For me, you are one of the most beautiful gifts
+        that life has ever put on my path. 🌹
+      </p>
+      <p class="message-signature">With all my love, always 💛</p>
+      <p class="message-dutch">Ik hou van je 💕</p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown-section">
+    <p class="countdown-label">💫 Time together since March 9, 2024 💫</p>
+    <div class="countdown-boxes">
+      <div class="cd-box"><span class="cd-num" id="cdDays">—</span><span class="cd-unit">Days</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdHours">—</span><span class="cd-unit">Hours</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdMins">—</span><span class="cd-unit">Minutes</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdSecs">—</span><span class="cd-unit">Seconds</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    💖 Made with all the love in the world · 09/03/24 💖
+  </footer>
+
+</div><!-- /main-content -->
+
+<script src="mesario.js"></script>
+</body>
+</html>

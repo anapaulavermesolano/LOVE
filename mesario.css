@@ -1,0 +1,678 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Lato:wght@300;400&display=swap');
+
+:root {
+  --rose: #e8547a;
+  --deep-rose: #c0395b;
+  --blush: #fde8ef;
+  --gold: #d4af37;
+  --cream: #fff8f0;
+  --text-dark: #3a1a2e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0a14 0%, #3a1a2e 50%, #1a0a14 100%);
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── FLOATING PETALS ── */
+.petals-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.petal {
+  position: absolute;
+  top: -40px;
+  font-size: 1.4rem;
+  animation: fall linear infinite;
+  opacity: 0.7;
+}
+@keyframes fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── STARS ── */
+.stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+
+/* ── FLOATING HEARTS ── */
+.hearts-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.heart-float {
+  position: absolute;
+  bottom: -60px;
+  color: rgba(232, 84, 122, 0.25);
+  font-size: 1.2rem;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.6; }
+  100% { transform: translateY(-110vh) scale(1.5) rotate(20deg); opacity: 0; }
+}
+
+/* ══════════════════════════════
+   PASSWORD SCREEN
+══════════════════════════════ */
+#password-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: linear-gradient(135deg, #1a0a14 0%, #3a1a2e 50%, #1a0a14 100%);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+#password-screen.hide {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.password-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(232,84,122,0.3);
+  border-radius: 28px;
+  padding: 50px 40px 44px;
+  text-align: center;
+  width: min(420px, 90vw);
+  box-shadow: 0 0 60px rgba(232,84,122,0.2), 0 20px 60px rgba(0,0,0,0.5);
+  animation: cardIn 0.9s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lock-heart {
+  font-size: 4rem;
+  animation: pulse 1.6s ease-in-out infinite;
+  display: block;
+  margin-bottom: 16px;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.15); }
+}
+
+.password-card h1 {
+  font-family: 'Dancing Script', cursive;
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+.password-card p.subtitle {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+/* Heart-shaped input wrapper */
+.heart-input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.heart-input-wrapper svg.heart-outline {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+.heart-input-wrapper input[type="text"] {
+  width: 100%;
+  padding: 16px 20px 16px 48px;
+  border-radius: 50px;
+  border: 2px solid rgba(232,84,122,0.5);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 3px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.heart-input-wrapper input[type="text"]::placeholder {
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  font-family: 'Lato', sans-serif;
+}
+.heart-input-wrapper input[type="text"]:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 20px rgba(232,84,122,0.4);
+}
+.heart-input-wrapper input[type="text"].error-shake {
+  border-color: #ff4d4d;
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-6px); }
+  80%      { transform: translateX(6px); }
+}
+
+.error-msg {
+  color: #ff6b8a;
+  font-size: 0.88rem;
+  height: 22px;
+  margin-bottom: 16px;
+  transition: opacity 0.3s;
+}
+.error-msg.hidden { opacity: 0; }
+
+.btn-unlock {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: #fff;
+  font-size: 1.05rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(192,57,91,0.5);
+}
+.btn-unlock:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(192,57,91,0.6);
+}
+.btn-unlock:active { transform: scale(0.97); }
+
+/* date hint dots */
+.hint {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+}
+.hint-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(232,84,122,0.4);
+}
+.hint-slash {
+  color: rgba(255,255,255,0.25);
+  font-size: 0.75rem;
+}
+
+/* ══════════════════════════════
+   MAIN CONTENT
+══════════════════════════════ */
+#main-content {
+  display: none;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 80px;
+}
+#main-content.show { display: block; }
+
+/* ── Header ── */
+.site-header {
+  text-align: center;
+  padding: 60px 20px 30px;
+  position: relative;
+}
+.site-header .crown {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: sway 3s ease-in-out infinite;
+}
+@keyframes sway {
+  0%,100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+.site-header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  color: #fff;
+  text-shadow: 0 0 30px rgba(232,84,122,0.7);
+}
+.site-header .date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  background: rgba(232,84,122,0.15);
+  border: 1px solid rgba(232,84,122,0.4);
+  padding: 8px 20px;
+  border-radius: 50px;
+  color: rgba(255,255,255,0.85);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+/* ── FLAGS ── */
+.flags-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px 0 10px;
+  flex-wrap: wrap;
+}
+.flag-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: flagFloat 3s ease-in-out infinite;
+}
+.flag-item:nth-child(2) { animation-delay: 0.5s; }
+.flag-item:nth-child(3) { animation-delay: 1s; }
+@keyframes flagFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.flag-pole {
+  width: 4px;
+  height: 60px;
+  background: linear-gradient(to bottom, #d4af37, #8b6914);
+  border-radius: 2px;
+  position: relative;
+}
+.flag-pole::before {
+  content: '★';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d4af37;
+  font-size: 1rem;
+}
+.flag {
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  width: 72px;
+  height: 48px;
+}
+.flag-stripe { flex: 1; }
+
+/* Peru */
+.peru .s1 { background: #d91023; }
+.peru .s2 { background: #fff; }
+.peru .s3 { background: #d91023; }
+
+/* Netherlands */
+.netherlands { flex-direction: column; }
+.netherlands .s1 { background: #ae1c28; }
+.netherlands .s2 { background: #fff; }
+.netherlands .s3 { background: #21468b; }
+
+/* Italy */
+.italy .s1 { background: #009246; }
+.italy .s2 { background: #fff; }
+.italy .s3 { background: #ce2b37; }
+
+.flag-label {
+  color: rgba(255,255,255,0.7);
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.95rem;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(232,84,122,0.5), transparent);
+}
+.divider span { color: var(--rose); font-size: 1.2rem; }
+
+/* ══════════════════════════════
+   CAROUSEL
+══════════════════════════════ */
+.carousel-section {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.carousel-title {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  text-shadow: 0 0 20px rgba(232,84,122,0.5);
+}
+
+.carousel-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(232,84,122,0.3), 0 20px 60px rgba(0,0,0,0.6);
+  background: #1a0a14;
+  aspect-ratio: 4/4.2;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
+}
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carousel-slide .slide-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2a1020, #3d1535);
+}
+.carousel-slide .slide-placeholder .ph-icon { font-size: 3.5rem; }
+.carousel-slide .slide-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px 18px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+}
+
+/* Nav buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.carousel-btn:hover {
+  background: rgba(232,84,122,0.5);
+  border-color: var(--rose);
+  transform: translateY(-50%) scale(1.1);
+}
+.carousel-btn.prev { left: 14px; }
+.carousel-btn.next { right: 14px; }
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(232,84,122,0.4);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.dot.active {
+  background: var(--rose);
+  transform: scale(1.3);
+}
+
+/* Upload */
+.upload-hint {
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.82rem;
+  margin-top: 10px;
+  font-style: italic;
+}
+.upload-section {
+  text-align: center;
+  margin-top: 18px;
+}
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border: 2px dashed rgba(232,84,122,0.5);
+  border-radius: 50px;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.btn-upload:hover {
+  border-color: var(--rose);
+  color: #fff;
+  background: rgba(232,84,122,0.1);
+}
+#fileInput { display: none; }
+
+/* ══════════════════════════════
+   ROMANTIC MESSAGE
+══════════════════════════════ */
+.message-section {
+  max-width: 680px;
+  margin: 50px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+.message-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(232,84,122,0.25);
+  border-radius: 24px;
+  padding: 44px 40px;
+  position: relative;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+  animation: fadeUp 0.9s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.message-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px; left: 24px;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: rgba(232,84,122,0.2);
+  line-height: 1;
+}
+
+.message-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.message-hearts span {
+  font-size: 1.4rem;
+  animation: heartBeat 1.2s ease-in-out infinite;
+}
+.message-hearts span:nth-child(2) { animation-delay: 0.15s; font-size: 1.8rem; }
+.message-hearts span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes heartBeat {
+  0%,100% { transform: scale(1); }
+  30%      { transform: scale(1.3); }
+  60%      { transform: scale(1.1); }
+}
+
+.message-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.7rem;
+  color: var(--rose);
+  margin-bottom: 20px;
+}
+.message-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: rgba(255,255,255,0.88);
+  font-size: 1.08rem;
+  line-height: 1.85;
+  margin-bottom: 28px;
+}
+.message-signature {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(212,175,55,0.4);
+}
+
+.message-dutch {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  color: var(--rose);
+  margin-top: 24px;
+  text-shadow: 0 0 24px rgba(232,84,122,0.6);
+  animation: heartBeat 1.8s ease-in-out infinite;
+}
+
+/* ── COUNTDOWN ── */
+.countdown-section {
+  max-width: 600px;
+  margin: 44px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+.countdown-label {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 18px;
+}
+.countdown-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cd-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(232,84,122,0.3);
+  border-radius: 14px;
+  padding: 18px 22px;
+  min-width: 90px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.cd-num {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: #fff;
+  font-weight: 700;
+}
+.cd-unit {
+  font-size: 0.75rem;
+  color: var(--rose);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-bottom: 30px;
+  color: rgba(255,255,255,0.3);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1rem;
+}
+
+/* ── Fireworks on unlock ── */
+.firework {
+  position: fixed;
+  pointer-events: none;
+  z-index: 200;
+  font-size: 1.6rem;
+  animation: firework-anim 1s ease forwards;
+}
+@keyframes firework-anim {
+  0%   { opacity: 1; transform: scale(0.5); }
+  50%  { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(2) translateY(-40px); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .message-card { padding: 34px 24px; }
+  .carousel-btn { width: 38px; height: 38px; font-size: 1rem; }
+}
