@@ -59,7 +59,7 @@ makeFloatingHearts();
 /* ═══════════════════════════
    PASSWORD
 ═══════════════════════════ */
-const CORRECT = '09/03/24';
+const CORRECT = '09/03/25';
 const pwdInput = document.getElementById('pwdInput');
 
 pwdInput.addEventListener('input', function () {
@@ -236,7 +236,7 @@ buildSlides();
    COUNTDOWN
 ═══════════════════════════ */
 function startCountdown() {
-  const start = new Date('2024-03-09T00:00:00');
+  const start = new Date('2025-03-09T00:00:00');
   function update() {
     const now  = new Date();
     const diff = now - start;
