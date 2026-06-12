@@ -606,6 +606,106 @@ body {
   animation: heartBeat 1.8s ease-in-out infinite;
 }
 
+/* ══════════════════════════════
+   SURPRISE TEASER
+══════════════════════════════ */
+.surprise-section {
+  max-width: 680px;
+  margin: 50px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+.surprise-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(212,175,55,0.08), rgba(232,84,122,0.08));
+  border: 2px dashed rgba(212,175,55,0.5);
+  border-radius: 24px;
+  padding: 44px 40px;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+  animation: fadeUp 0.9s ease both;
+}
+
+.surprise-sparkle {
+  position: absolute;
+  font-size: 1.4rem;
+  opacity: 0.7;
+  animation: sparkleTwirl 3s ease-in-out infinite;
+}
+.surprise-sparkle.s1 { top: 18px; left: 24px; animation-delay: 0s; }
+.surprise-sparkle.s2 { top: 26px; right: 30px; font-size: 1.1rem; animation-delay: 0.6s; }
+.surprise-sparkle.s3 { bottom: 18px; left: 50%; transform: translateX(-50%); animation-delay: 1.2s; }
+@keyframes sparkleTwirl {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+  50%       { transform: scale(1.4) rotate(180deg); opacity: 1; }
+}
+
+.surprise-icon {
+  display: inline-block;
+  font-size: 3.2rem;
+  margin-bottom: 14px;
+  animation: giftWiggle 2.4s ease-in-out infinite;
+}
+@keyframes giftWiggle {
+  0%, 100% { transform: rotate(-8deg) scale(1); }
+  25%       { transform: rotate(8deg) scale(1.05); }
+  50%       { transform: rotate(-4deg) scale(1); }
+  75%       { transform: rotate(4deg) scale(1.05); }
+}
+
+.surprise-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 18px;
+  text-shadow: 0 0 14px rgba(212,175,55,0.4);
+}
+.surprise-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+  font-size: 1.02rem;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.surprise-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.sp-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 14px;
+  padding: 14px 20px;
+  min-width: 76px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+}
+.sp-num {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 700;
+}
+.sp-unit {
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.surprise-active {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: var(--rose);
+  text-shadow: 0 0 16px rgba(232,84,122,0.6);
+  animation: heartBeat 1.4s ease-in-out infinite;
+}
+.sp-hidden { display: none; }
+
 /* ── COUNTDOWN ── */
 .countdown-section {
   max-width: 600px;

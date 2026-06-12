@@ -85,6 +85,7 @@ function checkPassword() {
       const mc = document.getElementById('main-content');
       mc.classList.add('show');
       startCountdown();
+      startSurpriseCountdown();
     }, 700);
   } else {
     errEl.classList.remove('hidden');
@@ -208,7 +209,11 @@ function prevSlide() { goTo(current - 1); resetAuto(); }
 
 function startAuto() {
   clearInterval(autoTimer);
-  autoTimer = setInterval(() => { goTo(current + 1); }, 4500);
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(() => {
+    goTo(current + 1);
+    autoTimer = setInterval(() => { goTo(current + 1); }, 4500);
+  }, 4000);
 }
 function resetAuto() { startAuto(); }
 
@@ -244,6 +249,50 @@ function startCountdown() {
     document.getElementById('cdMins').textContent  = String(m).padStart(2, '0');
     document.getElementById('cdSecs').textContent  = String(s).padStart(2, '0');
   }
+  update();
+  setInterval(update, 1000);
+}
+
+/* ═══════════════════════════
+   SURPRISE TEASER COUNTDOWN
+═══════════════════════════ */
+function startSurpriseCountdown() {
+  const START_HOUR = 17; // 5 PM
+  const END_HOUR   = 19; // 7 PM
+  const countdownEl = document.getElementById('surpriseCountdown');
+  const activeEl    = document.getElementById('surpriseActiveMsg');
+
+  function update() {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Amsterdam',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    }).formatToParts(new Date());
+    const get = type => parseInt(parts.find(p => p.type === type).value, 10);
+    const nowSec = get('hour') * 3600 + get('minute') * 60 + get('second');
+    const startSec = START_HOUR * 3600;
+    const endSec   = END_HOUR * 3600;
+
+    if (nowSec >= startSec && nowSec < endSec) {
+      countdownEl.classList.add('sp-hidden');
+      activeEl.classList.remove('sp-hidden');
+      return;
+    }
+
+    countdownEl.classList.remove('sp-hidden');
+    activeEl.classList.add('sp-hidden');
+
+    const diff = nowSec < startSec
+      ? startSec - nowSec
+      : (86400 - nowSec) + startSec;
+
+    const h = Math.floor(diff / 3600);
+    const m = Math.floor((diff % 3600) / 60);
+    const s = diff % 60;
+    document.getElementById('spHours').textContent = String(h).padStart(2, '0');
+    document.getElementById('spMins').textContent  = String(m).padStart(2, '0');
+    document.getElementById('spSecs').textContent  = String(s).padStart(2, '0');
+  }
+
   update();
   setInterval(update, 1000);
 }
